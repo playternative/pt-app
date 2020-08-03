@@ -1,10 +1,12 @@
 import React from 'react'
 
+import GameList from '@/containers/GameList'
+
 const Home = () => {
   return (
-    <>
-    <p>Home</p>
-    </>
+    <section>
+      <GameList />
+    </section>
   )
 }
 

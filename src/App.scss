@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+// NavbarText
+
+.main-navbar {
+  background: #F2F2F2 !important;
+  border-bottom: 1px solid lightgrey;
+}
+
+// Global
+
+.hover {
+  &:hover {
+    color: black;
+    font-weight: 700;
+  }
+}

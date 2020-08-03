@@ -19,7 +19,7 @@ const Content = ({ user }) => {
 }
 
 const Application = ({ user, authenticate }) => {
-console.log(user, 'user')
+
   useEffect(() => {
     authenticate()
   }, [])

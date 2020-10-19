@@ -14,11 +14,7 @@ const rootPersistConfig = {
     // transform state being rehydrated
     (state) => ({
       ...state,
-      user: {
-        ...state.token && {
-          token: state.token
-        }
-      }
+      user: state.token
     }),
     { whitelist: ['app'] }
   )

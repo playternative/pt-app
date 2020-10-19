@@ -19,10 +19,18 @@ export default function* () {
     let token = yield select(({ app }) => app.token)
 
     if (token) {
-      const decode = jwt_decode(token)
+      const decode = jwt_decode(token, { complete: true })
+      // let dateNow = new Date();
+
+      // let isExpired = false
+      // if (decode.exp < dateNow.getTime()) {
+      //   isExpired = true
+      //   yield put(push(setUser(null)))
+      //   yield put(push('/'))
+      // } 
       yield put(setUser(decode))
       yield put(push('/'))
-    }
+    } 
   })
 
   yield takeLatest(login, function* ({ payload: { e, user, userLoggedIn } }) {

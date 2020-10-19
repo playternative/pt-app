@@ -1,7 +1,8 @@
 import React from 'react'
-import { Redirect, Route, Switch } from "react-router-dom"
+import { Redirect, Route } from "react-router-dom"
 
 const NoAuthRoute = ({ component: Component, user, ...otherProps }) => (
+  // If user exists redirect them to home route / else the component
   <Route
     {...otherProps}
     render={(props) => (

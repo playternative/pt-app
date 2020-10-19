@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { push } from 'connected-react-router'
 import { Link } from "react-router-dom"
-import { logout } from "../actions/index";
+import { logout } from "../../actions/index.js";
 
 import {
   Button,
@@ -16,26 +16,25 @@ import {
   Dropdown
 } from "reactstrap";
 
-const Topbar = ({ user, push, logout }) => {
+const Topbar = ({ user, logout, push }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen(prevState => !prevState);
 
   console.log(user, 'user')
 
   return (
-    <section className="pt-4">
-      <section className="w-100 text-center position-absolute">
-        <h2 className="nav-logo font-weight-bolder">
-          <span className="nav-play">
-            PLAY
-        </span>
-          <span style={{ color: '#F2D98D' }}>ternative</span></h2>
-      </section>
-      <Navbar className="top-bar">
+    <section>
+      <Navbar className="top-bar" expand="md">
+        <NavbarBrand href="/">
+          <h2 className="logo">PLAY<span>ternative</span></h2>
+        </NavbarBrand>
         <Nav className="ml-auto mb-0 d-flex flex-column" navbar>
           <div className="text-center">
             {!user && (
               <>
-                <Button className="top-bar-btn ">Sign Up</Button>
-                <Button as={Link} href='/login' className="top-bar-btn ml-2">Log in</Button>
+              <Button className="top-bar-btn ">Sign Up</Button>
+              <Button as={Link} href='/login' className="top-bar-btn ml-2">Log in</Button>
               </>
             )}
             {user && user.admin && (
@@ -48,13 +47,13 @@ const Topbar = ({ user, push, logout }) => {
         </Nav>
       </Navbar>
       {user && (
-        <div style={{ color: '#F2D98D' }} className="d-flex flex-row justify-content-end">
-          <span className="mt-2 mr-2">Logged in as {user.email || user.username}</span>
+        <div className="d-flex flex-row justify-content-end">
+          <span className="mt-2 mr-2">Logged in as {user?.email || user?.username}</span>
         </div>
       )}
     </section>
-  )
-}
+  );
+};
 
 export default connect(
   ({ app }) => ({

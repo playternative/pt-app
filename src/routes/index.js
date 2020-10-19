@@ -1,19 +1,26 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { IndexRoute, Switch, Route } from 'react-router-dom'
 
 import { NoAuthRoute, PrivateRoute } from '@/components/application/index.js'
 
+import AdminRoutes from './admin'
+
+import {
+  Login,
+  Admin
+} from '@/pages'
+
 import Home from '@/pages/Home'
-import AdminPanel from '@/pages/AdminPanel'
 
 const Routes = props => {
   return (
-    <section>
       <Switch>
-        <Route exact path='/' component={Home} {...props} />
-        <Route exact path="/admin" component={AdminPanel} {...props} />
+        <Route  exact path="/login" component={Login} {...props} />
+        <Route exact path='/' component={Home} {...props} /> 
+
+      // Admin Routes
+      <PrivateRoute exact path='/admin' component={Admin} {...props}  />
       </Switch>
-    </section>
   )
 }
 
